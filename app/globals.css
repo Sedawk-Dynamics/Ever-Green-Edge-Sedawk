@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+/* Brand theme: charcoal + soft white, lavender accent (from the new TF logo). */
+@theme inline {
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  --color-charcoal: var(--charcoal);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-lavender: var(--lavender);
+  --color-lavender-deep: var(--lavender-deep);
+}
+
+:root {
+  color-scheme: dark;
+  --charcoal: #1b1c21; /* page background */
+  --surface: #24252c; /* cards, bands */
+  --line: #34353e; /* borders */
+  --paper: #f4f3f7; /* soft white text */
+  --mist: #a7a7b3; /* secondary text (≈7:1 on charcoal) */
+  --lavender: #b9a8ff; /* accent, glow, primary buttons */
+  --lavender-deep: #8e7bf0; /* accent for hover states */
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+  body {
+    @apply bg-charcoal text-paper font-sans antialiased;
+    /* Slide-in animations start off-screen; never let them cause sideways scroll. */
+    overflow-x: clip;
+  }
+}
+
+/* Soft lavender glow used behind hero/CTA areas. */
+.lavender-glow {
+  background-image: radial-gradient(60% 55% at 85% 0%, rgb(185 168 255 / 0.22), transparent 70%);
+}
+
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgb(185 168 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(185 168 255 / 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
