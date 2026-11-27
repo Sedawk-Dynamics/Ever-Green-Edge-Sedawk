@@ -7,7 +7,6 @@ import { SiteFooter } from '@/components/site/site-footer'
 import { WhatsAppFloat } from '@/components/site/whatsapp-float'
 import { MotionProvider } from '@/components/motion/primitives'
 import { Tracking } from '@/components/analytics/tracking'
-import { MarketStrip } from '@/components/fit/market-strip'
 import { SITE } from '@/lib/site'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
@@ -47,8 +46,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${outfit.variable} ${plexMono.variable} bg-charcoal`}>
       <body className="font-sans antialiased">
         <MotionProvider>
-          {/* Live market slider sits above the header on every page. */}
-          <MarketStrip />
           <SiteHeader />
           <main>{children}</main>
           <SiteFooter />
