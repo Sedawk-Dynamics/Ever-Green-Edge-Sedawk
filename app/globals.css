@@ -85,11 +85,24 @@ html {
   animation-play-state: paused;
 }
 
+/* Office photo gallery: continuous auto-scroll, pauses on hover / keyboard focus. */
+.animate-gallery {
+  animation: ticker 45s linear infinite;
+}
+.gallery:hover .animate-gallery,
+.gallery:focus-within .animate-gallery {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-ticker {
+  .animate-ticker,
+  .animate-gallery {
     animation: none;
+  }
+  .gallery {
+    overflow-x: auto;
   }
 }

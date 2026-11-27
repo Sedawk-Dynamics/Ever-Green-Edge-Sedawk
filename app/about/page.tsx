@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { MentorCards, PageHero, Section, TeamCards } from '@/components/site/blocks'
-import { TrackCarousel } from '@/components/motion/carousel'
+import { PhotoMarquee } from '@/components/motion/photo-marquee'
 import { Reveal, SpotlightCard } from '@/components/motion/primitives'
 import { GALLERY } from '@/lib/site'
 
@@ -21,6 +22,19 @@ export default function AboutPage() {
             <h2 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">
               We are not a course company that teaches from slides.
             </h2>
+            {/* Placeholder visual (generic desk, not our office) — swap for a real photo when available. */}
+            <div className="group relative mt-10 aspect-[4/3] overflow-hidden rounded-xl border border-line shadow-xl shadow-black/15">
+              <Image
+                src="/images/trading-desk.jpg"
+                alt="Multi-screen trading desk showing market charts"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <span className="absolute bottom-3 left-3 rounded-sm bg-black/55 px-2 py-0.5 font-mono text-[10px] tracking-widest text-white/80 uppercase backdrop-blur">
+                Representative image
+              </span>
+            </div>
           </Reveal>
           <Reveal delay={0.1} className="flex flex-col gap-6 text-lg leading-relaxed text-mist text-pretty">
             <p>
@@ -91,7 +105,7 @@ export default function AboutPage() {
       </Section>
 
       <Section label="The desk" title="Inside our Pune office.">
-        <TrackCarousel slides={GALLERY} />
+        <PhotoMarquee slides={GALLERY} label="Photos of our Pune office" />
       </Section>
     </>
   )

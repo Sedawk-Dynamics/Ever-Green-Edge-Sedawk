@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Section, TeamCards } from '@/components/site/blocks'
 import { Faq } from '@/components/site/interactive'
-import { TrackCarousel } from '@/components/motion/carousel'
+import { PhotoMarquee } from '@/components/motion/photo-marquee'
 import { Reveal } from '@/components/motion/primitives'
 import { GetTradersBand } from '@/components/fit/lead-forms'
 import { FinalEnrollBand, FitHomeHero, FitSteps, ProgramsGrid, TierCards, WhatSetsUsApart } from '@/components/fit/sections'
@@ -53,7 +53,7 @@ export default function Home() {
           Meet our mentors <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
         </Link>
         <Reveal delay={0.1} className="mt-14">
-          <TrackCarousel slides={GALLERY} />
+          <PhotoMarquee slides={GALLERY} label="Photos of our trading floor in Bavdhan, Pune" />
         </Reveal>
       </Section>
 
