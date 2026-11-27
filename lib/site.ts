@@ -9,6 +9,8 @@ export const SITE = {
   // Exact wording required by the brief (section 6) — use everywhere.
   address: 'The Trader Foundry, 2nd Floor, Shinde Complex, NDA Pashan Road, Bavdhan, Pune, Maharashtra 411021',
   addressQuery: 'The Trader Foundry, 2nd Floor, Shinde Complex, NDA Pashan Road, Bavdhan, Pune, Maharashtra 411021',
+  // Office pin from the Google Doc: 18°30'45.1"N 73°46'55.5"E.
+  geo: { lat: 18.512528, lng: 73.782083 },
   hours: 'Monday–Friday, 9:00 AM – 6:00 PM. Visits are by appointment.',
   // OPEN ITEM: brief asks for a dedicated business number (currently the number given in the brief).
   phoneDisplay: '+91 97659 79001',
@@ -29,24 +31,45 @@ export const SITE = {
 } as const
 
 export const TDP = {
-  tagline: 'Deep mentorship. 6 months. Zero fees. A real shot at firm capital.',
+  tagline: 'Deep mentorship. 6 months. Worth ₹2 lakh, free for the first 10 students. A real shot at firm capital.',
+  // Price block (Google Doc + brochure image): worth ₹2,00,000, free for the first 10 students.
+  // OPEN ITEM: confirm whether "first 10" is per cohort or overall, and what later seats cost.
+  worth: '₹2,00,000',
+  freeFor: 'Free for the first 10 students',
+  why: 'Free for the first 10 students because we invest in our traders: top performers go on to trade firm capital from our office, with no personal capital at risk. Selection by screening and interview.',
+  stats: [
+    { value: '6', label: 'months, full-time' },
+    { value: '1-on-1', label: 'deep mentorship' },
+    { value: '10–12', label: 'seats per cohort' },
+    { value: 'Firm', label: 'capital for top performers' },
+  ],
   copy:
-    'TDP is our full-time, 6-month deep mentorship program for people who want to trade professionally. It is completely free. Each cohort takes only 10–12 trainees, selected through screening and interviews. Each trainee is mentored one-on-one and in small groups by practising traders on our desk, follow professional risk rules, and are reviewed on every trade. Trainees who show consistent, disciplined performance get the opportunity to trade firm capital from our office. You never put your own money at risk.',
+    'TDP is our full-time, 6-month deep mentorship program for people who want to trade professionally. It is worth ₹2,00,000 and free for the first 10 students. Each cohort takes only 10–12 trainees, selected through screening and interviews. Each trainee is mentored one-on-one and in small groups by practising traders on our desk, follows professional risk rules, and is reviewed on every trade. Trainees who show consistent, disciplined performance get the opportunity to trade firm capital from our office. You never put your own money at risk.',
   details: [
     { label: 'Duration', value: '6 months, full-time' },
-    { label: 'Fees', value: 'Zero' },
+    { label: 'Fees', value: 'Worth ₹2,00,000 · free for the first 10 students' },
     { label: 'Seats', value: '10–12 per cohort' },
     { label: 'Format', value: 'In person, at our Pune office' },
     { label: 'Selection', value: 'Application, screening, interview' },
     { label: 'Outcome', value: 'Top performers get the opportunity to trade firm capital from our office' },
   ],
+  // "The TDP journey" (brochure image).
   steps: [
-    { title: 'Apply', text: 'Fill in the online application.' },
-    { title: 'Screening', text: 'A short assessment of aptitude and mindset.' },
-    { title: 'Interview', text: 'Meet our mentors in person or on a call.' },
-    { title: 'Train for 6 months', text: 'Structured curriculum, live desk exposure and daily reviews.' },
-    { title: 'Evaluation', text: 'Performance measured on consistency and risk discipline, not one lucky trade.' },
-    { title: 'Firm capital', text: 'Top performers get the opportunity to trade firm capital from our office.' },
+    { title: 'Screening & Interview', text: 'Apply online, take a short assessment of aptitude and mindset, and meet our mentors.' },
+    { title: 'Foundations & Process', text: 'A structured curriculum and a written trading process, under professional risk rules.' },
+    { title: 'Mentored Live Trading', text: 'Trade on our desk, mentored one-on-one and in small groups, reviewed on every trade.' },
+    { title: 'Performance Evaluation', text: 'Measured on consistency and risk discipline, not one lucky trade.' },
+    { title: 'Trade Firm Capital', text: 'Top performers get the opportunity to trade firm capital from our office.' },
+  ],
+  everyTraineeGets: [
+    { strong: 'Mentors who trade', rest: 'full-time on our desk' },
+    { strong: 'Journaling & reviews', rest: 'for a repeatable process' },
+    { strong: 'Risk discipline', rest: 'under live RMS rules' },
+  ],
+  alsoOffered: [
+    { strong: 'AI & Algo Automation', rest: '2-day weekend batch' },
+    { strong: 'NISM Prep', rest: 'Series VII & VIII' },
+    { strong: 'Program Lead', rest: 'Shrinivas Jachak' },
   ],
 }
 
@@ -54,7 +77,7 @@ export const TDP = {
 export const FAQ = [
   {
     q: 'Is TDP really free?',
-    a: 'Yes. The Trader Development Program has zero fees. It is selection-based: you apply, take a short screening assessment and attend an interview.',
+    a: 'TDP is worth ₹2,00,000 and is free for the first 10 students. It is selection-based: you apply, take a short screening assessment and attend an interview.',
   },
   {
     q: 'Do I have to put my own money at risk?',
@@ -74,13 +97,13 @@ export const FAQ = [
   },
   {
     q: 'What if I only want to learn a specific skill?',
-    a: 'We also run focused paid courses: a 45–60 day Trading Strategies Program and a two-day weekend AI & Algo Trading Automation Workshop. Use Know More on the Courses page to enquire.',
+    a: 'We also run focused paid courses: a 45–60 day Trading Strategies Program and a 2-month Advanced Option Selling Mentorship with our prop-floor traders. Use Know More on the Courses page to enquire.',
   },
 ]
 
 export const PRINCIPLES = [
   'Mentored by working traders',
-  'Zero-fee deep mentorship',
+  'Free deep mentorship',
   'Selection, not sales',
   'A path to firm capital',
   'Risk first, always',
@@ -93,8 +116,8 @@ export const SETS_APART = [
     text: 'Our mentors trade live markets every day. You learn what they do, not what a textbook says.',
   },
   {
-    title: 'Zero-fee deep mentorship',
-    text: 'Our 6-month Trader Development Program is a deep, full-time mentorship at no cost to you.',
+    title: 'Free deep mentorship',
+    text: 'Our 6-month Trader Development Program is a deep, full-time mentorship worth ₹2 lakh, free for the first 10 students.',
   },
   {
     title: 'Selection, not sales',
@@ -114,9 +137,8 @@ export const SETS_APART = [
   },
 ]
 
-// Paid courses. The brief lists a third course with no details yet, so only
-// two are shown at launch. Add the third here once its name, duration and copy arrive.
-export const COURSES = [
+// Paid courses shown on /courses.
+export const COURSES: { id: string; name: string; duration: string; copy: string; schedule?: { label: string; value: string }[] }[] = [
   {
     id: 'trading-strategies',
     name: 'Trading Strategies Program',
@@ -125,21 +147,59 @@ export const COURSES = [
       'A complete, structured course on trading strategies, from market structure and setups to risk management and execution. You get mentorship from practising traders throughout. Built for people who want a serious foundation, at their own pace beyond the course.',
   },
   {
-    id: 'ai-algo-workshop',
-    name: 'AI & Algo Trading Automation Workshop',
-    duration: '2 days (weekend batch)',
+    // Replaces the AI & Algo workshop card (Google Doc). Fee deliberately not shown:
+    // the FIT brief says "Enquire for fee (not shown on site)".
+    id: 'advanced-option-selling',
+    name: 'Advanced Option Selling Mentorship',
+    duration: '2 months',
     copy:
-      'A two-day weekend workshop on automating your trading with AI and algorithms. Learn to turn a strategy into rules, connect them to execution, and manage risk automatically. Designed for working professionals, especially from IT, who want a systematic, low-screen-time approach to trading.',
+      'Learn option selling directly from 3–4 full-time professional traders on our prop floor, who trade the markets every day and together handle ₹20 Cr+ in trading limits. In month 1 they teach theory and strategies on weekends, from real experience, with a practical, hands-on approach. In month 2 you join them on the prop floor on weekdays to see how they actually perform in live markets.',
+    schedule: [
+      { label: 'Month 1', value: 'Theory & strategies · weekends' },
+      { label: 'Month 2', value: 'Live practice on our prop floor · weekdays' },
+    ],
   },
+]
+
+// Smaller programs listed under the courses (brochure: "Also offered").
+export const ALSO_OFFERED = [
+  { name: 'AI & Algo Automation workshop', detail: '2-day weekend batch' },
+  { name: 'NISM Prep', detail: 'Series VII & VIII' },
 ]
 
 export const TEAM = [
   { name: 'Shrinivas Jachak', role: 'Program Lead', bio: '7+ years trading Indian and US markets.' },
-  { name: 'Shubham', role: 'Program Lead', bio: null },
   { name: 'Shivam Patil', role: 'Senior Mentor – Options', bio: null },
 ]
 // OPEN ITEM: written consent from each person before name/photo go public.
-// Bios for Shubham and Shivam Patil are still to come (brief shows placeholders).
+// Bio for Shivam Patil is still to come.
+
+// "Our Mentors" — DUMMY profiles requested as placeholders (Google Doc). Replace the names,
+// photos and experience with real, consented details before launch. While `sample` is true
+// the card shows a "Sample profile" badge so a placeholder can never pass as a real person.
+export const MENTORS: { name: string; role: string; image: string; experience: string[]; sample: boolean }[] = [
+  {
+    name: 'Mentor Name One',
+    role: 'Options Trader · Prop Floor',
+    image: '/placeholder-user.jpg',
+    experience: ['10+ years trading NIFTY and BANK NIFTY options', 'Specialises in option selling and risk management'],
+    sample: true,
+  },
+  {
+    name: 'Mentor Name Two',
+    role: 'Derivatives Trader · Prop Floor',
+    image: '/placeholder-user.jpg',
+    experience: ['8+ years in F&O on NSE', 'Mentors trainees on intraday execution and journaling'],
+    sample: true,
+  },
+  {
+    name: 'Mentor Name Three',
+    role: 'Systematic Trader',
+    image: '/placeholder-user.jpg',
+    experience: ['6+ years building rule-based strategies', 'Leads the AI & Algo Automation workshop'],
+    sample: true,
+  },
+]
 
 export const GALLERY = [
   { src: '/images/gallery/trading-29711.jpg', alt: 'The Trader Foundry trading floor with rows of monitors showing market charts', w: 1600, h: 1200 },

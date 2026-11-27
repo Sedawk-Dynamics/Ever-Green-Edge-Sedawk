@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from 'react'
 import { buttonVariants } from '@/components/ui/button'
-import { COURSES, SITE } from '@/lib/site'
+import { ALSO_OFFERED, COURSES, SITE } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
 // NOTE: no backend is connected yet. Submitting opens the visitor's email app
@@ -98,7 +98,7 @@ export function ApplyForm() {
 
 export function EnquiryForm({ defaultCourse, id }: { defaultCourse?: string; id?: string }) {
   const [sent, setSent] = useState(false)
-  const options = [...COURSES.map((c) => c.name), 'General enquiry']
+  const options = [...COURSES.map((c) => c.name), ...ALSO_OFFERED.map((o) => o.name), 'General enquiry']
   const initial = defaultCourse && options.includes(defaultCourse) ? defaultCourse : options[0]
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {

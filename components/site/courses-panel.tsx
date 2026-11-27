@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { ease } from '@/components/motion/primitives'
 import { buttonVariants } from '@/components/ui/button'
 import { EnquiryForm } from '@/components/site/forms'
-import { COURSES } from '@/lib/site'
+import { ALSO_OFFERED, COURSES } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
 // Course cards with "Know More" → opens the enquiry form pre-set to that course.
@@ -30,13 +30,24 @@ export function CoursesPanel() {
             whileHover={{ y: -6 }}
             transition={{ duration: 0.7, ease, delay: i * 0.12 }}
             className={cn(
-              'flex scroll-mt-28 flex-col rounded-lg border bg-surface p-8 transition-colors hover:border-lavender/50',
+              'flex scroll-mt-28 flex-col rounded-lg border bg-surface p-8 transition-[border-color,box-shadow] hover:border-lavender/60 hover:shadow-xl hover:shadow-black/10',
               selected === c.name ? 'border-lavender' : 'border-line',
             )}
           >
             <p className="font-mono text-xs tracking-wider text-lavender uppercase">Duration · {c.duration}</p>
             <h2 className="mt-4 text-2xl font-semibold text-balance md:text-3xl">{c.name}</h2>
-            <p className="mt-4 flex-1 text-base leading-relaxed text-mist text-pretty">{c.copy}</p>
+            <p className="mt-4 text-base leading-relaxed text-mist text-pretty">{c.copy}</p>
+            {c.schedule && (
+              <dl className="mt-6 grid gap-3 sm:grid-cols-2">
+                {c.schedule.map((s) => (
+                  <div key={s.label} className="rounded-md border border-line bg-charcoal p-4">
+                    <dt className="font-mono text-xs tracking-wider text-lavender uppercase">{s.label}</dt>
+                    <dd className="mt-1 text-sm text-paper">{s.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+            <span className="flex-1" />
             <button
               type="button"
               onClick={() => knowMore(c.name)}
@@ -46,6 +57,17 @@ export function CoursesPanel() {
             </button>
           </motion.article>
         ))}
+      </div>
+
+      <div className="mt-8 rounded-lg border border-line bg-surface p-6">
+        <p className="font-mono text-xs tracking-[0.2em] text-lavender uppercase">Also offered</p>
+        <ul className="mt-4 flex flex-col gap-2 text-paper/90 sm:flex-row sm:gap-8">
+          {ALSO_OFFERED.map((o) => (
+            <li key={o.name}>
+              <strong className="font-semibold text-paper">{o.name}</strong> · {o.detail}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div id="enquiry" className="mt-20 scroll-mt-28 rounded-lg border border-line bg-surface p-6 md:p-10">

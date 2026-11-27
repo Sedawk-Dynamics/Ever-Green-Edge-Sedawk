@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useId, useRef, useState } from 'react'
 import { ArrowRight, Check, Minus, Plus } from 'lucide-react'
 import { buttonVariants } from '@/components/ui/button'
 import { ease } from '@/components/motion/primitives'
@@ -201,6 +201,7 @@ export function Comparison() {
 
 export function Faq({ items }: { items: { q: string; a: string }[] }) {
   const [open, setOpen] = useState<number | null>(0)
+  const uid = useId()
   return (
     <ul className="divide-y divide-line rounded-lg border border-line bg-surface">
       {items.map((it, i) => {
@@ -211,7 +212,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              aria-controls={`faq-${i}`}
+              aria-controls={`${uid}-faq-${i}`}
               className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left text-base font-medium transition-colors hover:text-lavender md:text-lg"
             >
               {it.q}
@@ -222,7 +223,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div
-                  id={`faq-${i}`}
+                  id={`${uid}-faq-${i}`}
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}

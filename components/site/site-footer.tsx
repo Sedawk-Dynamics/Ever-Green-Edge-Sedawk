@@ -2,10 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, Mail, MapPin } from 'lucide-react'
 import { SITE } from '@/lib/site'
+import { COMPANY } from '@/lib/fit'
 import { FacebookIcon, InstagramIcon, WhatsAppBrandIcon } from './brand-icons'
 
 const siteLinks = [
   { href: '/about', label: 'About' },
+  { href: '/fit', label: 'FIT Program' },
   { href: '/tdp', label: 'TDP' },
   { href: '/courses', label: 'Courses' },
   { href: '/contact', label: 'Contact' },
@@ -77,6 +79,11 @@ export function SiteFooter() {
       <div className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-8 text-xs leading-relaxed text-mist">
           <p>{SITE.disclaimerShort}</p>
+          {/* FIT brief: footer shows company name, address and grievance contact. */}
+          <p>
+            {SITE.name} is operated by {COMPANY.registeredName}, {COMPANY.registeredAddress}. Grievance contact:{' '}
+            {COMPANY.grievanceContact}.
+          </p>
           <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
               {legalLinks.map((l) => (

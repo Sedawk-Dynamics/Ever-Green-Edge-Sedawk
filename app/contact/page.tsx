@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Clock, Mail, MapPin, Phone } from 'lucide-react'
+import { Clock, Mail, MapPin, Navigation, Phone } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/site/whatsapp-icon'
 import { EnquiryForm } from '@/components/site/forms'
 import { PageHero, Section } from '@/components/site/blocks'
@@ -18,7 +18,7 @@ export default function ContactPage() {
     <>
       <PageHero label="Contact" title="Visit us in Pune, or get in touch." />
 
-      <Section>
+      <Section tone="light">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
           <Reveal className="flex flex-col gap-6">
             <ul className="flex flex-col gap-6 rounded-lg border border-line bg-surface p-7">
@@ -62,19 +62,30 @@ export default function ContactPage() {
             <p className="text-sm text-mist">Visits are by appointment. Please call or WhatsApp before you come.</p>
           </Reveal>
 
-          <Reveal delay={0.15} className="overflow-hidden rounded-lg border border-line">
-            <iframe
-              title="Map showing The Trader Foundry office in Bavdhan, Pune"
-              src={`https://www.google.com/maps?q=${encodeURIComponent(SITE.addressQuery)}&output=embed`}
-              className="h-full min-h-[360px] w-full border-0 grayscale-[30%] invert-[.92] hue-rotate-180"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          <Reveal delay={0.15} className="flex flex-col gap-3">
+            {/* Exact office pin (18°30'45.1"N 73°46'55.5"E), not an address search. */}
+            <div className="overflow-hidden rounded-lg border border-line">
+              <iframe
+                title="Map showing the exact location of The Trader Foundry office in Bavdhan, Pune"
+                src={`https://www.google.com/maps?q=${SITE.geo.lat},${SITE.geo.lng}&z=17&output=embed`}
+                className="h-[420px] w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+            <a
+              href={`https://www.google.com/maps/dir/?api=1&destination=${SITE.geo.lat},${SITE.geo.lng}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(buttonVariants({ variant: 'outline' }), 'w-full sm:w-fit')}
+            >
+              <Navigation className="size-4" aria-hidden /> Get directions in Google Maps
+            </a>
           </Reveal>
         </div>
       </Section>
 
-      <Section label="Enquiry" title="Send us a message." className="border-t border-line">
+      <Section label="Enquiry" title="Send us a message.">
         <div className="rounded-lg border border-line bg-surface p-6 md:p-10">
           <EnquiryForm />
         </div>

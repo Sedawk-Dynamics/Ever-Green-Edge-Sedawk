@@ -6,6 +6,8 @@ import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { WhatsAppFloat } from '@/components/site/whatsapp-float'
 import { MotionProvider } from '@/components/motion/primitives'
+import { Tracking } from '@/components/analytics/tracking'
+import { MarketStrip } from '@/components/fit/market-strip'
 import { SITE } from '@/lib/site'
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
@@ -18,7 +20,7 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.domain),
   title: {
-    default: 'The Trader Foundry — Professional Trader Development, Pune',
+    default: 'The Trader Foundry — FIT Funded Indian Trader Program, Pune',
     template: '%s | The Trader Foundry',
   },
   description: SITE.heroSub,
@@ -45,12 +47,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${outfit.variable} ${plexMono.variable} bg-charcoal`}>
       <body className="font-sans antialiased">
         <MotionProvider>
+          {/* Live market slider sits above the header on every page. */}
+          <MarketStrip />
           <SiteHeader />
           <main>{children}</main>
           <SiteFooter />
           <WhatsAppFloat />
         </MotionProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        <Tracking />
       </body>
     </html>
   )

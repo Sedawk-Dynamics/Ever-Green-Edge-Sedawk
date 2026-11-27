@@ -25,6 +25,22 @@
   --lavender-deep: #8e7bf0; /* accent for hover states */
 }
 
+/*
+ * Light sections (the site mixes dark and light bands). Every colour on the site comes
+ * from the tokens above, so a light band just redefines them. Lavender is deepened here
+ * so accent text and buttons keep at least 4.5:1 contrast on soft white.
+ */
+.theme-light {
+  color-scheme: light;
+  --charcoal: #f5f4f8; /* soft white background */
+  --surface: #ffffff; /* cards */
+  --line: #e2e0ea; /* borders */
+  --paper: #1b1c21; /* charcoal text */
+  --mist: #575866; /* secondary text */
+  --lavender: #6d58e0; /* accent, primary buttons */
+  --lavender-deep: #5a45cc;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;

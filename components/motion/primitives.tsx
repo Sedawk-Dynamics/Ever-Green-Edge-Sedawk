@@ -76,7 +76,9 @@ export function StaggerItem({ children, className, as = 'div' }: { children: Rea
 export function SplitHeadline({ text, className, delay = 0.1 }: { text: string; className?: string; delay?: number }) {
   const words = text.split(' ')
   return (
-    <span className={className} aria-label={text} role="text">
+    <span className={className}>
+      {/* Screen readers read this copy; the animated words below are hidden from them. */}
+      <span className="sr-only">{text}</span>
       {words.map((w, i) => (
         <span key={i} aria-hidden className="inline-block overflow-hidden pb-[0.08em] align-bottom">
           <motion.span

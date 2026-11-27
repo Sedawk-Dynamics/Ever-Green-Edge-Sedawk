@@ -5,14 +5,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { ArrowRight, Menu, X } from 'lucide-react'
-import { buttonVariants } from '@/components/ui/button'
+import { Menu, X } from 'lucide-react'
 import { ease, ScrollProgress } from '@/components/motion/primitives'
+import { EnrollLink } from '@/components/fit/enroll-link'
 import { cn } from '@/lib/utils'
 
 const links = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
+  { href: '/fit', label: 'FIT Program' },
   { href: '/tdp', label: 'TDP' },
   { href: '/courses', label: 'Courses' },
   { href: '/contact', label: 'Contact' },
@@ -21,36 +22,25 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const [hovered, setHovered] = useState<string | null>(null)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   useEffect(() => setOpen(false), [pathname])
 
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
 
+  // Header CTA on every page: "Apply For FIT" → enrollment (Google Doc). Hidden on the enrollment page itself.
+  const onEnrollPage = pathname.startsWith('/fit/enroll')
+
   return (
     <>
       <ScrollProgress />
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease }}
-        className={cn(
-          'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
-          scrolled || open ? 'border-b border-line bg-charcoal/85 backdrop-blur-md' : 'bg-transparent',
-        )}
-      >
+      {/* Sticky, in the page flow (sits right under the market strip), so pages need no
+          extra top padding to clear it — no leftover gap below the header. */}
+      <header className="sticky top-0 z-50 border-b border-line bg-charcoal/90 backdrop-blur-md">
         <nav aria-label="Primary" className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-6 px-5">
           <Link href="/" aria-label="The Trader Foundry home" className="flex items-center">
             <motion.span whileHover={{ scale: 1.04 }} transition={{ duration: 0.2 }} className="block">
-              <Image src="/images/logo-tf-light.png" alt="" width={86} height={48} priority className="h-11 w-auto" />
+              <Image src="/images/logo-tf-light.png" alt="" width={110} height={61} priority className="h-14 w-auto lg:h-[3.75rem]" />
             </motion.span>
           </Link>
 
@@ -77,10 +67,8 @@ export function SiteHeader() {
             ))}
           </ul>
 
-          <div className="hidden lg:block">
-            <Link href="/tdp#apply" className={cn(buttonVariants(), 'group')}>
-              Apply for TDP <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
-            </Link>
+          <div className="hidden min-w-[10rem] justify-end lg:flex">
+            {!onEnrollPage && <EnrollLink location="header">Apply For FIT</EnrollLink>}
           </div>
 
           <button
@@ -129,16 +117,18 @@ export function SiteHeader() {
                     </Link>
                   </motion.li>
                 ))}
-                <motion.li variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }} className="py-5">
-                  <Link href="/tdp#apply" className={cn(buttonVariants(), 'h-12 w-full')}>
-                    Apply for TDP
-                  </Link>
-                </motion.li>
+                {!onEnrollPage && (
+                  <motion.li variants={{ hidden: { opacity: 0, y: 8 }, show: { opacity: 1, y: 0 } }} className="py-5">
+                    <EnrollLink location="header-mobile" className="h-12 w-full">
+                      Apply For FIT
+                    </EnrollLink>
+                  </motion.li>
+                )}
               </motion.ul>
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.header>
+      </header>
     </>
   )
 }
