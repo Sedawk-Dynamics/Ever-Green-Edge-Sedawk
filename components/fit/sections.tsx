@@ -90,19 +90,8 @@ export function FitPageHero() {
 
 /* ------------------------------------------------------------------ How it works */
 
-export function FitSteps() {
-  return (
-    <Stagger as="ol" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {FIT.steps.map((s, i) => (
-        <StaggerItem as="li" key={s.title} className={cn('flex flex-col gap-4 rounded-lg border border-line bg-surface p-6', cardHover)}>
-          <span className="flex size-9 items-center justify-center rounded-full border border-lavender font-mono text-sm text-lavender">{i + 1}</span>
-          <h3 className="text-xl font-semibold">{s.title}</h3>
-          <p className="text-sm leading-relaxed text-mist">{s.text}</p>
-        </StaggerItem>
-      ))}
-    </Stagger>
-  )
-}
+// Animated, coloured step cards live in their own client component.
+export { FitSteps } from './fit-steps'
 
 /* ------------------------------------------------------------------ Tier cards */
 
