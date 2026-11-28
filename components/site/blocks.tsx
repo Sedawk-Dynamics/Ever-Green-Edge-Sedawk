@@ -85,7 +85,7 @@ const initials = (name: string) =>
 
 export function TeamCards() {
   return (
-    <Stagger as="ul" className="grid gap-5 sm:grid-cols-2 lg:max-w-4xl">
+    <Stagger as="ul" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {TEAM.map((p) => (
         <StaggerItem as="li" key={p.name}>
           <SpotlightCard className="flex h-full flex-col gap-4 rounded-lg border border-line bg-surface p-7 transition-colors hover:border-lavender/50">

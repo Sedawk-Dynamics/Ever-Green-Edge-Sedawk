@@ -43,10 +43,10 @@ export default function Home() {
       </Section>
 
       <Section
-        id="mentors"
-        label="Mentors"
-        title="Practising traders, not course presenters."
-        intro="Our mentors trade live markets every day from our trading floor in Bavdhan, Pune."
+        id="team"
+        label="Our Team"
+        title="The people behind The Trader Foundry."
+        intro="Our founders and operations team run The Trader Foundry from our trading floor in Bavdhan, Pune, backed by practising traders who mentor every cohort."
       >
         <TeamCards />
         <Link href="/about#mentors" className="group mt-8 inline-flex items-center gap-2 text-sm text-lavender">

@@ -69,7 +69,7 @@ export const TDP = {
   alsoOffered: [
     { strong: 'AI & Algo Automation', rest: '2-day weekend batch' },
     { strong: 'NISM Prep', rest: 'Series VII & VIII' },
-    { strong: 'Program Lead', rest: 'Shrinivas Jachak' },
+    { strong: 'Led by', rest: 'Founder Shrinivas Jachak' },
   ],
 }
 
@@ -167,12 +167,12 @@ export const ALSO_OFFERED = [
   { name: 'NISM Prep', detail: 'Series VII & VIII' },
 ]
 
-export const TEAM = [
-  { name: 'Shrinivas Jachak', role: 'Program Lead', bio: '7+ years trading Indian and US markets.' },
-  { name: 'Shivam Patil', role: 'Senior Mentor – Options', bio: null },
+// Leadership team — names and roles as confirmed by the client (28 Nov 2026).
+export const TEAM: { name: string; role: string; bio: string | null }[] = [
+  { name: 'Shrinivas Jachak', role: 'Founder', bio: '7+ years trading Indian and US markets.' },
+  { name: 'Shubham Patil', role: 'Co-Founder', bio: null },
+  { name: 'Shivam Kakade', role: 'Head of Operations', bio: null },
 ]
-// OPEN ITEM: written consent from each person before name/photo go public.
-// Bio for Shivam Patil is still to come.
 
 // "Our Mentors" — DUMMY profiles requested as placeholders (Google Doc). Replace the names,
 // photos and experience with real, consented details before launch. While `sample` is true
